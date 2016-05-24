@@ -364,6 +364,13 @@ Backpropagation through time (BPTT) 讓 RNN Learning 在實務上很難實現。
 | Attention Model | Towards Unsupervised Learning |
 
 ### Ultra Deep Network
+
+自古以來大家都喜歡蓋高樓，從埃及金字塔、到台北101、再到杜拜塔，一棟比一棟高。
+
+深度學習也一樣，從 2012 年 AlexNet 8 層網路的 16.4% 錯誤率，到 2014 年 VGG 19 層 7.3% 的錯誤率，到 2014 年 GoogleNet 22 層的 6.7% 錯誤率，最後 2015 年 Residual Net 152 層 3.57% 的錯誤率，一路往超級深的神經網路前進。但這樣的網路模型不會 overfitting 嗎？計算上能做得到嗎？
+
+Ultra Deep Network 採用 Residual Network 或 Hightway Network 架構，透過複製輸出到下下層的輸入，直接忽略某些網路層，能夠自動調整網路架構的深度。
+
 ### Attention Model
 ### Reinforcement Learning
 ### Towards Unsupervised Learning
