@@ -363,7 +363,7 @@ Backpropagation through time (BPTT) 讓 RNN Learning 在實務上很難實現。
 | Ultra Deep Network | Reinforcement Learning |
 | Attention Model | Towards Unsupervised Learning |
 
-### Ultra Deep Network
+### 超級深度網路 (Ultra Deep Network)
 
 自古以來大家都喜歡蓋高樓，從埃及金字塔、到台北101、再到杜拜塔，一棟比一棟高。
 
@@ -371,7 +371,7 @@ Backpropagation through time (BPTT) 讓 RNN Learning 在實務上很難實現。
 
 Ultra Deep Network 採用 Residual Network 或 Hightway Network 架構，透過複製輸出到下下層的輸入，直接忽略某些網路層，能夠自動調整網路架構的深度。
 
-### Attention Model
+### 注意模型 (Attention Model)
 
 情境：
 
@@ -445,5 +445,32 @@ Query → DNN/RNN
 - 圖片：台北 101 亮燈的夜拍照片
 - 輸出：A clock tower with a clock on it.
 
-### Reinforcement Learning
-### Towards Unsupervised Learning
+### 強化學習 (Reinforcement Learning)
+
+學校裡的機器學習是監督式學習 (supervised learning):輸入、輸出範圍固定。但真實世界裡的機器學習，沒有明確的輸入。
+
+例如，訂票系統的語音助理可以使用 RNN 根據客戶的語音輸入，幫客戶訂到飛機機票。但真正的挑戰，不是每個動作都有回饋，或是語音助理可能影響客戶未來的行為。
+
+範例一：機器無從判斷第一句的問候，不是造成客戶生氣的原因
+
+- 機器：Hello
+- 客戶：...
+- 機器：...
+- 客戶：...
+- ...
+- 客戶：#^$@$#@ (生氣)
+
+範例二：機器請客戶重複描述，客人可能輸出更多資訊，影響機器將觀察到的未來
+
+#### 深度強化學習 for 圍棋
+
+挑戰一：不是每個動作都有回饋
+
+- 初手天元 → ... 下了好幾百手 ... → Win!
+- 無法判別初手天元是好是壞
+
+挑戰二：機器可以影響觀察到的未來
+
+- 蒙地卡羅 (Monte Carlo) 樹狀搜尋很適合用來下圍棋，但無法通吃所有問題。
+
+### 朝向非監督式學習 (Towards Unsupervised Learning)
