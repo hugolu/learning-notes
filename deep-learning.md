@@ -399,5 +399,51 @@ Query → DNN/RNN
 - Answer: yellow
 - Prediction: yellow
 
+#### 視覺問答 (Visual Question Answering)
+
+範例ㄧ：
+
+- 照片：一張女性用香蕉裝扮鬍子
+- 問題：鬍子是用什麼做的
+- 過程：先找出人臉，在找出鬍子的位置，然後判別出這個位置的東西
+
+範例二：
+
+- 照片：一個籃子裝著一隻貓與一個玩偶，貓下方有個紅色的方塊
+- 問題：貓下面有個紅色的方塊嗎？
+- 過程：找出貓的位置，判斷貓臉下方的物體是不是紅色方塊
+
+
+#### 機器翻譯 (Machine Translation)
+
+- 記憶：一種語言 (machine learning)
+- 輸出：另一種語言 (機器學習)
+- 做法：使用 RNN 關聯字詞
+
+#### 語音識別 (Speech Recognition)
+
+- 記憶：一段語音 (...)
+- 輸出：文字稿 (how much wo...)
+
+> 我覺得這個例子講得不是很清楚
+
+#### 頭條產生 (Headline Generation)
+
+- 輸入：一段新聞稿 (台北市今天蔬菜到貨量較昨天略增,市況逢星期假日,需求增加,交易活絡,各類交易行情漲多跌少, 每公斤批發價上漲為約新台幣十四點八元; ......)
+- 輸出：台北市蔬菜批發價格行情上揚
+- 實際：台北市蔬菜批發行情上揚水果下挫
+
+#### 標題產生 (Caption Generation)
+
+範例ㄧ：
+
+- 圖片：一支金色的獅子雕像，坐在大樓外面的石台上
+- 輸出：A cat is sitting on a bad in a room.
+
+範例二：
+
+- 圖片：台北 101 亮燈的夜拍照片
+- 輸出：A clock tower with a clock on it.
+
 ### Reinforcement Learning
 ### Towards Unsupervised Learning
