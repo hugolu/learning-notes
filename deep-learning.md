@@ -277,8 +277,21 @@ model.add(Activation('softmax'))
 ```
 
 ### Recurrent Neural Network (RNN)
+- 擁有記憶力的神經網路
 
+範例：語音訂票系統
 
+當用戶說出：“I would like to arrive Taipei on November 2nd.” 要填空兩筆資料
+
+- 目的地：Taipei
+- 到達時間：November 2nd
+
+但當用戶說出：“I would leave Taipei on November 2nd.” 要填空兩筆資料
+
+- 出發地：Taipei
+- 出發時間：November 2nd
+
+雖然用戶說出的時間跟地點都一樣，但如果神經網路有記憶性，就能區別兩者差異。
 
 ## 第四講 下一波技術
 
