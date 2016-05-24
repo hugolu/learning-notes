@@ -372,5 +372,32 @@ Backpropagation through time (BPTT) 讓 RNN Learning 在實務上很難實現。
 Ultra Deep Network 採用 Residual Network 或 Hightway Network 架構，透過複製輸出到下下層的輸入，直接忽略某些網路層，能夠自動調整網路架構的深度。
 
 ### Attention Model
+
+情境：
+
+- 已知：腦子裡有今天學的、今天中午吃什麼、國中二年級的夏天
+- 問題：What's deep learning?
+- 反應：針對問題，**組織**已知的知識，回答正確的問題
+
+
+#### 閱讀理解 (Reading Comprehension)
+
+Query → DNN/RNN 
+→ Reading Head Control → Each sentence becomes a vector. 
+(→ Reading Head Control → Each sentence becomes a vector.) ...
+→ Answer
+
+| Story            | Hop 1    | Hpp 2    | Hop 3    |
+|------------------|----------|----------|----------|
+| Brian is a frog. | 0.00     | **0.98** | 0.00     |
+| Lili is gray.    | 0.07     | 0.00     | 0.00     |
+| Brian is yellow. | 0.07     | 0.00     | **1.00** |
+| Julius is green. | 0.06     | 0.00     | 0.00     |
+| Greg is a frog.  | **0.76** | 0.02     | 0.00     |
+
+- Question: What color is Greg?
+- Answer: yellow
+- Prediction: yellow
+
 ### Reinforcement Learning
 ### Towards Unsupervised Learning
