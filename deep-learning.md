@@ -293,6 +293,32 @@ model.add(Activation('softmax'))
 
 雖然用戶說出的時間跟地點都一樣，但如果神經網路有記憶性，就能區別兩者差異。
 
+RNN 的設計：
+
+- hidden layer 的輸出被儲存在記憶體中，這些輸出可以當作輸入
+- 如果文字出現“arrive”，這個訊息會被記憶下來，當出現“Taipei”時，解釋成「到達目的地」的機率就高於「離開出發地」
+
+#### RNN Neural Network
+
+RNN 最常使用的神經元：Long Short-term Memory (LSTM)，有四個輸入、一個輸出
+
+- Input 1: 來自其他網路的輸入
+- Input 2: input gate 的訊號控制 (控制輸入影響程度)
+- Input 3: forget gate 的訊號控制 (控制歷史資料影響程度)
+- Input 4: output gate 的訊號控制 (控制輸出影響程度)
+- Ouput: 輸出到其他網路
+
+#### RNN Learning Target
+
+|   | word1 | word2 | word3 | word4 |
+|---|-------|-------|-------|-------|
+| training sentences | arrive | Taipei | on | November 2nd |
+| explained as | other | dest | other | time time |
+
+因為 “arrive” 的關係，“Taipei” 會被解釋為 dest
+
+#### RNN Learn!
+
 ## 第四講 下一波技術
 
 | 跟網路結構相關的 | 跟學習目標有關的 |
