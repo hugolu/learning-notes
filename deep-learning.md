@@ -65,6 +65,74 @@ y = f(x) = σ(W<sup>L</sup> ... σ(W<sup>2</sup>σ(W<sup>1</sup>x + b<sup>1</sup
 
 #### 步驟三 開始學習
 
+- [TensorFlow](https://www.tensorflow.org/) is an open source software library for numerical computation using data flow graphs.
+- [Theano](http://deeplearning.net/software/theano/) is a Python library that allows you to define, optimize, and evaluate mathematical expressions involving multi-dimensional arrays efficiently.
+
+以上兩個工具提供深度學習的功能，功能強大但不好駕馭。
+
+[Keras](http://keras.io/) 包裝 Theano 與 TensorFlow，成為一個簡單易用的 Deep Learning library。
+
+- 輸入：28x28 影像每個像素
+- 輸出：0~9，十種可能
+
+以手寫辨識過程為例，Keras 程式碼：
+
+```python
+model = Sequential()
+```
+- 產生一個模型
+
+```python
+model.add( Dense( input_dim = 28*28, output_dim = 500) )
+model.add( Activation('Sigmoid') )
+```
+- 接收 28x28 的輸入向量
+- 輸出結果到 500 個神經元 (500隨意定)
+- 使用 sigmoid 活化函數
+
+```python
+model.add( Dense( output_dim = 500) )
+model.add( Activation('Sigmoid') )
+```
+- 下一層不需要宣告輸入數量 (因為 Keras 推測上層的輸出)
+- 輸出結果到 500 個神經元 (500隨意定)
+- 使用 sigmoid 活化函數
+
+```python
+model.add( Dense( output_dim = 10) )
+model.add( Activation('Softmax') )
+```
+- 下一層不需要宣告輸入數量 (因為 Keras 推測上層的輸出)
+- 輸出可能有 10 個結果
+- 使用 softmax 活化函數
+
+```python
+model.compile( loss='mse', optimizer=SGD(lr=0.1), metrics=['accurace'] )
+```
+- 使用 mean square error 計算錯誤
+- 設定 optimizer, metrics
+
+```python
+model.fit(x_train, y_train, batch_size=100, nb_epoch=20)
+```
+- 設定訓練資料
+
+```python
+score = model.evalute(x_test, y_test)
+print('Total loss on Testing Set:', score[0])
+print('Accuracy of Testing Set:', score[1])
+```
+- 輸出評估結果
+
+```python
+result = model.predict(x_test)
+```
+- 對測試資料做預測
+
+更進一步，使用 GPU 加速計算過程
+```python
+THEANO_FLAGS=device=gpu0 python YourCode.py
+```
 
 ### 為何要*深度*學習
 
