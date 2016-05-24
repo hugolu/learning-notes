@@ -219,6 +219,63 @@ THEANO_FLAGS=device=gpu0 python YourCode.py
 
 ### Convolutional Neural Network (CNN)
 
+為什麼要使用 CNN 處理圖像？
+
+- 輸入的資料可能很大量，例如 800x600 RGB 的圖片
+- 藉由考慮影像的特性，fully connected network 可能被簡化嗎？
+
+以鳥類為例，鳥喙可能出現在圖片的任何地方，出現在畫面左上，需要左上有群神經元處理這個資訊，出現在畫面中央，需要中央位置有群經元處理類似的資訊。但鳥喙有特定的影像模式，能由一組神經元專門負責處理嗎？
+
+透過 subsampling 的技術讓影像縮小，較少的資訊只需要較少的網路參數
+
+- 特性一：某些模式 (pattern) 比整體影像小很多
+- 特性二：相同的模式出現在不同的位置
+- 特性三：subsampling 影像像素不會改變物件
+
+CNN 透過三步驟，建構神經網路
+
+1. Convolution: 將特定模式當作過濾器走訪圖片各位置，得到 feature map
+2. Max Pooling: 將 feature map 劃分區域，取出最大值，得到另一張 subsampling 的小圖
+3. Flatten: 將小圖攤平，放到 DNN 分析
+
+> 步驟1,2 可重複多次
+
+以 36x32 的圖為例，使用傳統 DNN (dim=4x4x2) 分析需要，36x32=1152 個參數。但使用 CNN 只需要 9x2=18 個參數 (怎麼推導的?)。
+
+Keras CNN 範例 (只修改網路架構):
+
+```python
+model = Sequential()
+```
+```python
+model.add(Convolution2D(32, 3, 3, border_mode='same', input_shape=(img_channels, img_rows, img_cols)))
+model.add(Activation('relu'))
+model.add(Convolution2D(32, 3, 3))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+```
+```python
+model.add(Convolution2D(64, 3, 3, border_mode='same'))
+model.add(Activation('relu'))
+model.add(Convolution2D(64, 3, 3))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+```
+```python
+model.add(Flatten())
+```
+```python
+model.add(Dense(512))
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+```
+```python
+model.add(Dense(nb_classes))
+model.add(Activation('softmax'))
+```
+
 ### Recurrent Neural Network (RNN)
 
 
