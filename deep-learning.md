@@ -52,6 +52,28 @@ y = f(x) = σ(W<sup>L</sup> ... σ(W<sup>2</sup>σ(W<sup>1</sup>x + b<sup>1</sup
 
 #### 步驟二 學習目標
 
+輸入一張 16x16 的圖片，有墨水的地方為1，沒有墨水的地方為0，形成一個一為的陣列(x<sub>1</sub>,x<sub>2</sub>, ..., x<sub>256</sub>)。
+
+輸出一個 10 種元素的陣列，分別對應 (0, 1, 2, ..., 9) 的機率。
+
+創造一個 full connected feedforward network 模型，裡面的 hidden layers 形成一個非常複雜的函數。接下來，第三步驟的目標就是透過機器學習就是找出適合的函數參數。
+
+我們希望
+
+- 當圖片是 0, 找出 0 的機率最高
+- 當圖片是 1, 找出 1 的機率最高
+- ...
+- 當圖片是 9, 找出 9 的機率最高
+
+使用 loss 評估準確度，當圖片為 1，得到一個機率的矩陣，除了結果為 1 之外，其餘都是錯誤答案，計算輸出結果與目標之間的差距。使用 square error 或 cross entropy  評估錯誤率。
+
+加總所有錯誤，得到 L = Σ l<sub>r</sub>，然後經過學習找出一組讓 L 最小的參數。
+
+#### 步驟三 開始學習
+
+
+### 為何要*深度*學習
+
 基本上，神經網路層數越多，錯誤率越低，效果越好。但有另一個論點，為什麼要用多層，而不是將多層攤平成一層？
 
 從實驗數據來看，瘦高 (thin+tall) 網路的效果比肥短 (fat-short) 好。為什麼？
@@ -63,7 +85,8 @@ y = f(x) = σ(W<sup>L</sup> ... σ(W<sup>2</sup>σ(W<sup>1</sup>x + b<sup>1</sup
 
 以辨識男女長短髮為例，男性長髮的樣本遠少於其他族群，對於**肥短**型網路得到的訓練資料不夠，判斷效果不佳。對於**瘦高**型網路來說，有對男性、女性分類，有對長髮、短髮分類，雖然男性長髮樣本不多，但長髮特徵是由男女長髮樣本共同訓練，所以分辨長短髮的效果不會因為男性長髮樣本少而變差。
 
-#### 步驟三 開始學習
+
+### 踏出深度學習第一步
 
 - [TensorFlow](https://www.tensorflow.org/) is an open source software library for numerical computation using data flow graphs.
 - [Theano](http://deeplearning.net/software/theano/) is a Python library that allows you to define, optimize, and evaluate mathematical expressions involving multi-dimensional arrays efficiently.
@@ -133,12 +156,6 @@ result = model.predict(x_test)
 ```python
 THEANO_FLAGS=device=gpu0 python YourCode.py
 ```
-
-### 為何要*深度*學習
-
-### 踏出深度學習第一步
-
-
 
 
 
