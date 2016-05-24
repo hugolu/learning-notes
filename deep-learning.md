@@ -14,9 +14,7 @@
 
 #### 步驟一 建立網路結構
 
-##### Neuron (神經元)
-
-神經元是神經網路的基本元件，用以下公式表示：
+神經元 (Neuron) 是神經網路的基本元件，用以下公式表示：
 
 z = a<sub>1</sub>w<sub>1</sub> + ... + a<sub>k</sub>w<sub>k</sub> + ... + a<sub>K</sub>w<sub>K</sub> + b
 
@@ -30,11 +28,9 @@ a = σ(z)
 
 σ(z) 最初採用 Sigmoid function (= 1 / 1 + e<sup>-z</sup>)，當輸入值很小得到 0，當輸入值很大得到 1，輸入值為零得到 0.5。使用 Sigmoid function 把輸出值限定在一個可控制的範圍，才不會經過多層網路放大差異。
 
-##### Neuron Network (神經網路)
-多個神經元組成神經網路，每個神經元有不同的權重與偏移量，權重與偏移量將透過第三步驟求得。
+多個神經元組成神經網路 (Neuron Network)，每個神經元有不同的權重與偏移量，權重與偏移量將透過第三步驟求得。
 
-##### Fully Connected Feedforward Network (完全連結前饋網路)
-上層所有元件與下層所有元間都有連結，如果上層有 N 個神經元，下層有 M 個神經元，那麼就有 NxM 個連結，表示權重有 NxM 個。
+所有層與層間的神經元都相互連結的神經網路，稱作完全連結前饋網路 (Fully Connected Feedforward Network)。如果上層有 N 個神經元，下層有 M 個神經元，那麼就有 NxM 個連結，表示權重有 NxM 個。
 
 每層輸入以向量 x 表示，權重以矩陣 W 表示，偏移量以向量 b 表示，經過活化函數 σ() 得到輸出。
 
@@ -47,8 +43,7 @@ a = σ(z)
 
 y = f(x) = σ(W<sup>L</sup> ... σ(W<sup>2</sup>σ(W<sup>1</sup>x + b<sup>1</sup>) + b<sup>2</sup>) ... + b<sup>L</sup>)
 
-##### Output Layer (輸出層)
-使用 softmax layer 作為輸出層，讓輸出結果呈現機率分佈，所有可能加總為 1。
+最後，神經網路使用 softmax layer 作為輸出層 (Output Layer)，讓輸出結果呈現機率分佈，所有可能加總為 1。
 
 #### 步驟二 學習目標
 
