@@ -319,6 +319,43 @@ RNN 最常使用的神經元：Long Short-term Memory (LSTM)，有四個輸入�
 
 #### RNN Learn!
 
+Backpropagation through time (BPTT) 讓 RNN Learning 在實務上很難實現。
+
+- total loss 不會隨著 epoch 收斂 (呈現跳動)
+- error surface 可能很平坦，也可能很陡峭
+- w 參數難以設定
+  - 當w > 1，記憶會放大 gradient descent，需要較慢的學習速率
+  - 當w < 1，記憶會縮小 gradient descent，需要較快的學習速率
+
+| w | y<sup>1000</sup> |
+|---|------------------|
+| 1 | 1 |
+| 1.01 | ≈ 20000 | 
+| 0.99 | ≈ 0 |
+| 0.01 | ≈ 0 |
+
+有用的技巧：
+
+- advanced momentum method: Nesterov’s Accelerated Gradient (NAG)
+- Long Short-term Memory (LSTM) - memory and input are added
+- Gated Recurrent Unit (GRU) - input gate + output gate = 1
+- Clockwise RNN
+- Structurally Convolutioned Recurrent Network (SCRN)
+
+#### RNN 的應用
+- Many to one：輸入一串文字，輸出字詞 (positive, neutral, negative)
+  - 輸入：看了這部電影覺得很高興...
+  - 輸出：正雷
+- Many to many：輸入一串文字，得到較短的一段文字
+  - 輸入：好好好棒棒棒
+  - 輸出：好棒棒
+- Many to Many (No Limitation)：輸入、輸出各是一段不同長度的文字
+  - 輸入：machine learning
+  - 輸出：機器學習
+- One to Many：輸入一個圖片，輸出一串文字
+  - 輸入：圖(一對母子在草地遊戲)
+  - 輸出：a woman is ....
+
 ## 第四講 下一波技術
 
 | 跟網路結構相關的 | 跟學習目標有關的 |
