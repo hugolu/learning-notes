@@ -171,8 +171,17 @@ THEANO_FLAGS=device=gpu0 python YourCode.py
 
 
 
-## 第二講 DNN 訓練訣竅
-DNN: Deep Neural Network (深度神經網路)
+## 第二講 深度神經網路訓練訣竅
+
+深度學習效率不佳可能有兩個原因，不能把所以問題都歸因到 overfitting 上：
+
+- 在訓練資料上沒有好的結果
+- 在測試資料上沒有好的結果
+
+ > [wiki] 在統計學中，過適（英語：overfitting，或稱過度擬合）現象是指在調適一個統計模型時，使用過多參數。對比於可取得的資料總量來說，一個荒謬的模型只要足夠複雜，是可以完美地適應資料。過適一般可以識為違反奧卡姆剃刀原則。當可選擇的參數的自由度超過資料所包含資訊內容時，這會導致最後（調適後）模型使用任意的參數，這會減少或破壞模型一般化的能力更甚於適應資料。過適的可能性不只取決於參數個數和資料，也跟模型架構與資料的一致性有關。此外對比於資料中預期的雜訊或錯誤數量，跟模型錯誤的數量也有關。
+
+
+
 提高效能的訣竅：
 
 | 訓練資料上 | 測試資料上 |
@@ -182,6 +191,19 @@ DNN: Deep Neural Network (深度神經網路)
 | New activation function | Dropout |
 | Adaptive learning rate | Newwork Structure |
 | Momentum | |
+
+### Choosing proper lose
+### Mini-batch
+### New activation function
+### Adaptive learning rate
+### Momentum
+
+### Early Stop
+### Regularization
+### Dropout
+### Newwork Structure
+
+
 
 ## 第三講 神經網絡的變形
 
@@ -194,6 +216,8 @@ DNN: Deep Neural Network (深度神經網路)
 ### Convolutional Neural Network (CNN)
 
 ### Recurrent Neural Network (RNN)
+
+
 
 ## 第四講 下一波技術
 
