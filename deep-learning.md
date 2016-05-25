@@ -313,6 +313,16 @@ model.fit(X, y, validation_split=0.2, callbacks=[early_stopping])
 ```
 
 ### Regularization
+
+就像人類腦袋的神經連結，沒有使用就會退化甚至消失，weight decay 找到通常為零的輸入，讓這條連結變數萎縮消失，這樣的好處是能抵抗雜訊出現在不該出現的地方。
+
+> Weight Decay 是一種 regularization
+
+- 原來的：w ← w - ηδL/δw
+- weight decay: w ← (1-λ)w - ηδL/δw, λ=0.01
+
+雖然 w 會越來越小，但只要不斷有 input 進來刺激，w 就不會衰減為零 (跟人類腦袋運作原理類似，不是嗎？)
+
 ### Dropout
 ### Newwork Structure
 
