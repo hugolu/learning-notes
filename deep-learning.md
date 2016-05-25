@@ -229,6 +229,43 @@ model.fit(x.train, y_train, batch_size=100, nb_epoch=20)
 當訓練資料量不大時，使用 mini-batch 與不使用效率差不多。但資料量大，使用 mini-batch 有較好的效率。
 
 ### New activation function
+
+使用越深的網路架構，會出現梯度問題 (Gradient Probleam)，結果是越深的網路效率越差
+
+- 靠近 input 的網路：較小的梯度，學習很慢，結果幾乎隨機
+- 遠離 input 的網路：較大的梯度，學習很快，結果幾乎收斂 (based on random?)
+
+問題出在 Sigmoid 這個 Activation Function 會影響輸出的斜率 δl / δw 的計算結果
+
+- 當 output 小：斜率陡峭
+- 當 output 大：斜率平坦
+
+> 在 2006 人們使用 RBM pre-training, 在 2015 大家使用 ReLU
+
+#### ReLU (Rectified Linear Unit)
+- when z < 0, σ(z) = 0
+- when z > 0, σ(z) = z
+- when z = 0, σ(z) = 0 or z
+
+理由：
+
+- 計算快速
+- 生物理由 (神經元特性?)
+- 不同偏移量的無窮 Sigmoid
+- **消除梯度問題**
+
+使用 ReLU，在 z < 0 的時候 activation funciton 讓網路架構看起來像移除某些神經元的連結(σ(z) = 0)，變成一個較瘦的線性網路。
+
+其他變形：
+
+- Leaky ReLU
+ - when z < 0, σ(z) = 0.01z
+ - when z > 0, σ(z) = z
+- Parametric ReLU
+ - when z < 0, σ(z) = αz
+ - when z > 0, σ(z) = z 
+
+
 ### Adaptive learning rate
 ### Momentum
 
