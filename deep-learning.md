@@ -294,7 +294,24 @@ Adagrad：w ← w - η<sub>w</sub>δL/δw
 
 在物理的世界：像球由高處滾落遇到區域最低點，如果動能足夠就能脫離區域最低點，越過波峰找到全域最佳解。
 
+### Overfitting 怎麼發生的
+
+訓練資料與測試資料不同，學習的目標由訓練資料定義，所學習出來的網路參數適合學習目標但不一定在測試資料上得到好結果。
+
+降低overfitting的方法，更多的訓練資料或產生更多的訓練資料，例如手寫的數字圖片可以轉個小角度或加入一些雜訊變成更多的訓練資料。
+
 ### Early Stop
+
+提早停止訓練：雖然會得到較差的訓練效能，但可能對測試資料效能更好，因為沒有過度 overfitting。
+
+
+如果 validation loss 不再減小，如何提前停止訓練？
+```python
+from keras.callbacks import EarlyStopping
+early_stopping = EarlyStopping(monitor='val_loss', patience=2)
+model.fit(X, y, validation_split=0.2, callbacks=[early_stopping])
+```
+
 ### Regularization
 ### Dropout
 ### Newwork Structure
