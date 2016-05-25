@@ -267,6 +267,27 @@ model.fit(x.train, y_train, batch_size=100, nb_epoch=20)
 
 
 ### Adaptive learning rate
+
+要小心設定學習速度，學習速度太快不容易穩定收斂；學習速度太慢 total loss 收斂太慢
+
+- if learning rate is to large, total loss may not decrease after each update
+- if learning rate is to small, training would be too slow
+
+普遍簡單的想法，每次 epoch 逐漸減低學習速度。但無法找到一個全部適用的學習速度，不同的網路參數、不同的學習速度。
+
+#### Adagrad
+
+原來：w ← w - ηδL/δw
+Adagrad：w ← w - η<sub>w</sub>δL/δw
+
+η<sub>w</sub> (由w決定的學習速度) = η / √Σ(g<sup>i</sup>)<sup>2</sup>
+
+觀察到的現象：
+
+1. 斜率陡的地方，學習速度慢 (才不會一下跳太遠)
+2. 斜率緩的地方，學習速度快 (才不會移動太龜速)
+
+
 ### Momentum
 
 ### Early Stop
