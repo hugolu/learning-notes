@@ -290,6 +290,10 @@ Adagrad：w ← w - η<sub>w</sub>δL/δw
 
 ### Momentum
 
+在數學的世界：找到 δL/δw 斜率=0的位置(saddle, local minima)，可能只是區域最佳解，但很難再前進。
+
+在物理的世界：像球由高處滾落遇到區域最低點，如果動能足夠就能脫離區域最低點，越過波峰找到全域最佳解。
+
 ### Early Stop
 ### Regularization
 ### Dropout
