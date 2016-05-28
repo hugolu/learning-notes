@@ -76,9 +76,9 @@ y = f(x) = σ(W<sup>L</sup> ... σ(W<sup>2</sup>σ(W<sup>1</sup>x + b<sup>1</sup
 以一層 hidden layer 為例，網路參數 θ = {w<sub>1</sub>, w<sub>2</sub>, ..., b<sub>1</sub>, b<sub>2</sub>, ...}。學習目標：找出讓 total loss 最小的網路參數 θ
 
 - 隨機挑選一個初始值
-- 計算切線斜率 (δL / δw)
-- 往左、往右看，找到斜率為零的點 w ← w - ηδL/δw (η: learning rate，越大移動越快)
-- 計算 gradient descent 𝛻𝐿...
+- 計算切線斜率 (∂L / ∂w)
+- 往左、往右看，找到斜率為零的點 w ← w - η∂L/∂w (η: learning rate，越大表示移動越快)
+- 計算 gradient descent ∇L
 
 > [梯度下降法](https://zh.wikipedia.org/wiki/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95)（英語：Gradient descent）是一個最佳化算法，通常也稱為最速下降法。基於這樣的觀察：如果實值函數F(x)在點a處可微且有定義，那麼函數F(x)在a點沿著梯度相反的方向-∇F(a) 下降最快。
 
@@ -86,7 +86,7 @@ y = f(x) = σ(W<sup>L</sup> ... σ(W<sup>2</sup>σ(W<sup>1</sup>x + b<sup>1</sup
 
 雖然找到全域最佳解需要運氣跟技巧，不過計算 gradient descent 有一堆工具代勞。
 
-- 使用 backpropagation 的方式計算 δL/δw
+- 使用 backpropagation 的方式計算 ∂L/∂w
 
 ### 為何要*深度*學習
 
@@ -180,10 +180,10 @@ THEANO_FLAGS=device=gpu0 python YourCode.py
 
 ## 第二講 深度神經網路訓練訣竅
 
-深度學習效率不佳可能有兩個原因，不能把所以問題都歸因到 overfitting 上：
+深度學習效率不佳可能有兩個原因，但不能把所有問題都歸因到 overfitting 上：
 
-- 在訓練資料 (training data) 上沒有好的結果
-- 在測試資料 (testing data) 上沒有好的結果
+- 在訓練資料上沒有好的結果 (training data) 
+- 在測試資料上沒有好的結果 (testing data) 
 
  > [wiki] 在統計學中，過適（英語：overfitting，或稱過度擬合）現象是指在調適一個統計模型時，使用過多參數。對比於可取得的資料總量來說，一個荒謬的模型只要足夠複雜，是可以完美地適應資料。過適一般可以識為違反奧卡姆剃刀原則。當可選擇的參數的自由度超過資料所包含資訊內容時，這會導致最後（調適後）模型使用任意的參數，這會減少或破壞模型一般化的能力更甚於適應資料。過適的可能性不只取決於參數個數和資料，也跟模型架構與資料的一致性有關。此外對比於資料中預期的雜訊或錯誤數量，跟模型錯誤的數量也有關。
 
@@ -191,28 +191,28 @@ THEANO_FLAGS=device=gpu0 python YourCode.py
 
 | 訓練資料上 | 測試資料上 |
 |----------|----------|
-| Choosing proper lose  | Early Stop |
+| Choosing proper loss  | Early Stop |
 | Mini-batch | Regularization |
 | New activation function | Dropout |
 | Adaptive learning rate | Newwork Structure |
 | Momentum | |
 
-### Choosing proper lose
+### 選擇合適的損失計算方式 (Choosing proper loss)
 
-| Equation |   |
+| 方式 | 計算公式   |
 |----------|---|
 | Square Error | Σ (y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup> |
 | Cross Entropy | Σ ŷ<sub>i</sub>ln(y<sub>i</sub>) |
 
 [Understanding the difficulty of training deep feedforward neural networks](http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf)提到，使用 Cross Entropy 計算 total loss 得到的 softmax output 結果，比使用 Square Error 計算 total loss 有更劇烈的反應。也就是說使用 Cross Entropy 比使用 Square Error 在計算 total loss 上有更快的收斂速度。
 
-### Mini-batch
+### 小批量 (Mini-batch)
 
 將 epoch 分成小批量，有助於提高訓練效果
 
 - 隨機初始化網路參數
 - 選取第 1 個批次，L' = l<sup>1</sup> + l<sup>31</sup> + ...，更新網路參數
-- 選取第 2 個批次，L' = l<sup>2</sup> + l<sup>16</sup> + ...，更新網路參數
+- 選取第 2 個批次，L" = l<sup>2</sup> + l<sup>16</sup> + ...，更新網路參數
 - ...
 - 直到所有數據都批次處理完成
 - 一個 epoch 完成，接著下一個 epoch
@@ -225,21 +225,21 @@ model.fit(x.train, y_train, batch_size=100, nb_epoch=20)
 - 每個小批量 100 個樣本
 - 重複 20 次全數據集訓練
 
-每次更新網路參數的 L 都不一樣，這樣不是隨機更換訓練目標嗎？
+問題：每次更新網路參數的 L 都不一樣，這樣不是隨機更換訓練目標？
 
-- 原本的 gradient descent 緩慢收斂
+- 原本的 gradient descent 收斂緩慢
 - 使用 mini-batch 的 gradient descent 收斂快速，但呈現跳躍不穩定的狀態
 
 當訓練資料量不大時，使用 mini-batch 與不使用效率差不多。但資料量大，使用 mini-batch 有較好的效率。
 
-### New activation function
+### 新的活化函數 (New activation function)
 
-使用越深的網路架構，會出現梯度問題 (Gradient Probleam)，結果是越深的網路效率越差
+網路架構越深，梯度問題 (Gradient Probleam) 越嚴重，結果是越深的網路效率越差
 
 - 靠近 input 的網路：較小的梯度，學習很慢，結果幾乎隨機
 - 遠離 input 的網路：較大的梯度，學習很快，結果幾乎收斂 (based on random?)
 
-問題出在 Sigmoid 這個 Activation Function 會影響輸出的斜率 δl / δw 的計算結果
+問題出在 Sigmoid 這個 Activation Function 會影響輸出的斜率 ∂l/∂w 的計算結果
 
 - 當 output 小：斜率陡峭
 - 當 output 大：斜率平坦
@@ -270,19 +270,16 @@ model.fit(x.train, y_train, batch_size=100, nb_epoch=20)
  - when z > 0, σ(z) = z 
 
 
-### Adaptive learning rate
+### 自動調整的學習速度 (Adaptive learning rate)
 
-要小心設定學習速度，學習速度太快不容易穩定收斂；學習速度太慢 total loss 收斂太慢
-
-- if learning rate is to large, total loss may not decrease after each update
-- if learning rate is to small, training would be too slow
+要小心設定學習速度，學習速度太快不容易穩定收斂；學習速度太慢 total loss 收斂太慢。
 
 普遍簡單的想法，每次 epoch 逐漸減低學習速度。但無法找到一個全部適用的學習速度，不同的網路參數、不同的學習速度。
 
 #### Adagrad
 
-原來：w ← w - ηδL/δw
-Adagrad：w ← w - η<sub>w</sub>δL/δw
+原來：w ← w - η∂L/∂w
+Adagrad：w ← w - η<sub>w</sub>∂L/∂w
 
 η<sub>w</sub> (由w決定的學習速度) = η / √Σ(g<sup>i</sup>)<sup>2</sup>
 
@@ -292,9 +289,9 @@ Adagrad：w ← w - η<sub>w</sub>δL/δw
 2. 斜率緩的地方，學習速度快 (才不會移動太龜速)
 
 
-### Momentum
+### 動量 (Momentum)
 
-在數學的世界：找到 δL/δw 斜率=0的位置(saddle, local minima)，可能只是區域最佳解，但很難再前進。
+在數學的世界：∂L/∂w = 0 的位置，可能只是區域最佳解 (saddle, local minima)，一旦跑到這裡就很難脫離，繼續往全域最佳解前進。
 
 在物理的世界：像球由高處滾落遇到區域最低點，如果動能足夠就能脫離區域最低點，越過波峰找到全域最佳解。
 
@@ -304,10 +301,9 @@ Adagrad：w ← w - η<sub>w</sub>δL/δw
 
 降低overfitting的方法，更多的訓練資料或產生更多的訓練資料，例如手寫的數字圖片可以轉個小角度或加入一些雜訊變成更多的訓練資料。
 
-### Early Stop
+### 提早停止訓練 (Early Stop)
 
-提早停止訓練：雖然會得到較差的訓練效能，但可能對測試資料效能更好，因為沒有過度 overfitting。
-
+提早停止訓練：雖然會得到較差的訓練效能，但可能對測試資料效能更好，因為不會過度 overfitting。
 
 如果 validation loss 不再減小，如何提前停止訓練？
 ```python
@@ -316,24 +312,24 @@ early_stopping = EarlyStopping(monitor='val_loss', patience=2)
 model.fit(X, y, validation_split=0.2, callbacks=[early_stopping])
 ```
 
-### Regularization
+### 規則化 (Regularization)
 
 就像人類腦袋的神經連結，沒有使用就會退化甚至消失，weight decay 找到通常為零的輸入，讓這條連結變數萎縮消失，這樣的好處是能抵抗雜訊出現在不該出現的地方。
 
 > Weight Decay 是一種 regularization
 
-- 原來的：w ← w - ηδL/δw
-- weight decay: w ← (1-λ)w - ηδL/δw, λ=0.01
+- 原來的：w ← w - η∂L/∂w
+- weight decay: w ← (1-λ)w - η∂L/∂w, λ=0.01
 
 雖然 w 會越來越小，但只要不斷有 input 進來刺激，w 就不會衰減為零 (跟人類腦袋運作原理類似，不是嗎？)
 
-### Dropout
+### 丟棄 (Dropout)
 
 每次更新網路參數前，每個神經元有 P% 的機率被丟棄，得到一個瘦薄的網路架構，使用這個網路架構訓練。
 
 > 每次 mini-batch 都重新取樣要 dropout 的神經元
 
-訓練時，dropout 的機率 P%, 測試時，權重要乘上 (1-P)%。例如 dropout = 50%, 如果 在訓練時 w=1, 真正測試時 w 要設為 0.5。(因為訓練時缺席率=50%, 出席的神經元會加倍努力，所得到的權重也就加倍。到了測試時，所有神經元都出席了，每個神經元的力道要減輕，這樣才不過用力過度)
+訓練時，dropout 的機率 P%, 測試時，權重要乘上 (1-P)%。例如 dropout = 50%, 如果在訓練時 w = 1, 真正測試時 w 要設為 0.5。(因為訓練時缺席率=50%，出席的神經元會加倍努力，所得到的權重也就加倍。到了測試時，所有神經元都出席了，每個神經元的力道要減輕，這樣才不過用力過度)
 
 Dropout 是一種樂團合奏的概念，分別訓練不同的樂器群，最後所有人一起上台表演
 
@@ -341,8 +337,9 @@ Dropout 是一種樂團合奏的概念，分別訓練不同的樂器群，最後
 - set 2 for network 2
 - ...
 
-### Newwork Structure
+### 網路結構 (Newwork Structure)
 關於網路架構的設計，CNN 是個很棒的範例 (特別適合處理圖片)，下一講會詳述。
+
 
 
 ## 第三講 神經網絡的變形
