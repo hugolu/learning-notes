@@ -20,6 +20,8 @@ z = a<sub>1</sub>w<sub>1</sub> + ... + a<sub>k</sub>w<sub>k</sub> + ... + a<sub>
 
 a = σ(z)
 
+- a<sub>1</sub> ~ a<sub>K</sub>: 輸入
+- a: 輸出
 - w: weight (權重)
 - b: bias (偏移量)
 - σ(z): activation function (活化函數)
@@ -39,7 +41,7 @@ a = σ(z)
 - ...
 - 第Ｌ層: σ(W<sup>L</sup>x + b<sup>L</sup>)
 
-輸入層輸入 (x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>N</sub>) 經過多個隱藏成層作用，每個隱藏層中包含多個神經元，最後透過輸出層得到結果 (y<sub>1</sub>, y<sub>2</sub>, ..., y<sub>N</sub>)。
+輸入層輸入 (x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>N</sub>) 經過多個隱藏層作用，每個隱藏層中包含多個神經元，最後透過輸出層得到結果 (y<sub>1</sub>, y<sub>2</sub>, ..., y<sub>N</sub>)。
 
 y = f(x) = σ(W<sup>L</sup> ... σ(W<sup>2</sup>σ(W<sup>1</sup>x + b<sup>1</sup>) + b<sup>2</sup>) ... + b<sup>L</sup>)
 
