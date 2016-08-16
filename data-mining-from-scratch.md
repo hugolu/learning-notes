@@ -51,7 +51,7 @@
   - 分群(Clustering)、摘要(Summarization)、關聯規則學習(Association Rule Learning)
 
 #### 分類(Classification)
-- 概括*已知*的結構，應用在*未知*的資料
+- 概括**已知**的結構，應用在**未知**的資料
 - 學習 classifier 模型分類新資料
 - 例如，給訂目前的社交網路，預測兩個節點是否會在未來連結
 
@@ -90,7 +90,67 @@
   - 後迴歸：某 tweets 是在說某事件嗎？ (評估可能性)
 
 ### 資料探勘中的機器學習 (Machine Learning in Data Mining)
+
+#### 從機器學習的觀點
+- 利用演算法來學習模型
+- 資訊編碼為特徵向量 (feature vectors)
+- 特徵與模型的選取很重要
+
+![](machine-learning.png)
+
+#### 機器學習模型的種類
+- 不同演算法適用於不同資料
+- 依賴於資料本身與應用場景
+
+#### 監督式學習 vs. 非監督式學習
+- 監督式學習 (Supervised Learning)
+  - with labeled data: 使用有標籤的資料學習，例如分類
+- 非監督式學習 (Unsupervised Learning)
+  - without labeled data: 使用無標籤的資料學習，例如分群
+
+#### 半監督式學習 (Semi-supervised Learning)
+- 使用有標籤與無標簽的資料學習
+- 主要想法：類似的資料有類似的標籤
+- 例如，自動幫未上標籤的資料上標籤
+
+#### 增強學習 (Reinforcement Learning)
+- 沒有明確的標籤，但能從環境中隱約觀察到
+- 從環境隱約回饋中學習
+- 例如，AlphaGO 每步驟沒有明確的標籤，只有「輸贏」的隱約回饋
+
 ### 創新：從資料到任務到知識 (Innovation: from Data to Task to Knowledge)
+
+#### 兩個關鍵基礎
+- 資料：資訊來源
+- 任務：要解決的問題
+
+![](data-task-knowledge.png)
+
+***Then the model can solve the task with data and produce knowledge!***
+
+#### 資料在哪裡？到處都是！
+- 社群服務 (Facebook, Twitter, ...)
+- 網路 (sockal networks, road networks, ...)
+- 感應器 (time-series, ...)
+- 影像 (photos, fMRI, ...)
+- 文本 (news, documents)
+- 網頁 (forums, websites, ...)
+- 公開資料 (populations, ubike logs, ...)
+- 商業資料 (transactions, customers, ...)
+- 更多
+
+#### 資料挖掘如何革新？
+
+#### 資料驅動
+- 從特地資料引入任務：可以對資料做什麼？
+  - 對於空氣品質：推測目前品質、預測未來品質、監測站選擇 
+  - 對於社會事件：找到潛在客戶、推薦事件、用戶影響排名
+
+#### 問題驅動
+- 針對特定任務搜集相關資料：什麼資料有助於解決問題？
+  - 音樂推薦：聆聽紀錄、音樂標籤、社群網路
+  - 交通評估：氣象、過去的交通、社群網路
+
 ### 資料探勘工具 (Tools for Data Mining)
 
 ## 從資料中發現蛛絲馬跡：特徵抽取與選擇 (Clues in Data: Features Extraction and Selection)
