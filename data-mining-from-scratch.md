@@ -153,6 +153,41 @@
 
 ### 資料探勘工具 (Tools for Data Mining)
 
+#### 工具
+- 圖形化介面
+  - Weka
+- 命行式介面
+  - LIBSVM & LIBLINEAR
+  - RankLib
+  - Mahout
+- 函式庫
+  - scikit-learn
+  - XGBoost
+
+#### Weka
+- http://www.cs.waikato.ac.nz/ml/weka/
+- 功能：分類、回歸、分群、關聯規則
+- 優點：眾多模型、友善介面、容易視覺化
+- 缺點：慢、參數調整、令人混亂的格式
+
+#### scikit-learn
+- http://scikit-learn.org/
+- 功能：分類、迴歸、分群、降維
+- 優點：快速、彈性、眾多模式、參數調整
+- 缺點：參數調整、自行處理資料、沒有圖形化介面、需要寫程式
+
+#### LIBSVM & LIBLINEAR
+- http://www.csie.ntu.edu.tw/~cjlin/libsvm/
+- 功能：分類、迴歸
+- 優點：高效能、純粹命令式介面、參數調整、固定資料格式
+- 缺點：沒有圖形化介面、只有 SVM
+
+#### RankLib
+- http://www.lemurproject.org/
+- 功能：排名
+- 優點：眾多模式、純粹命令式介面、參數調整、固定資料格式
+- 缺點：沒有圖形化介面、只有排名功能
+
 ## 從資料中發現蛛絲馬跡：特徵抽取與選擇 (Clues in Data: Features Extraction and Selection)
 
 ### 資料探勘中的特徵 (Features in Data Mining)
