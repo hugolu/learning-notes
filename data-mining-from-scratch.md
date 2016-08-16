@@ -364,7 +364,7 @@ Type O  | 0 | 0 | 0 | 1
 - 評估資料 (evaluation data) - 調整模式
 - 測試資料 (testing data) - 判斷效能
 
-#### 分類的評估方式
+#### 評估分類
 
 > 我覺得投影片的表有問題，以下是我自己的想法
 
@@ -389,11 +389,11 @@ Precision | `TP / (TP + FP)` | The ratio of correct predictions among positive p
 Recall    | `TP / (TP + FN)` | The ratio of correct predictions among all such-class instances
 F1-Score  | `2∙P∙R/(P+R)` | Consider precision and recall at the same time 
 
-#### 遞迴的評估方式
+#### 評估遞迴
 - MAE (Mean Absoluate Error): 預測距離真實結果有多接近
 - RMSE (Root-mean-square error): 放大嚴重的錯誤
 
-#### 排序的評估方式
+#### 評估排序
 - Binary Relevance Ranking: 針對兩個類別 (有關連與無關聯)
   - Mean Average Precision (MAP)
   - Mean Reciprocal Rank (MRR)
@@ -402,7 +402,8 @@ F1-Score  | `2∙P∙R/(P+R)` | Consider precision and recall at the same time
 - Graded Relevance Ranking: 相關可有多個級別 (分數1~5)
   - Normalized Discounted Cumulated Gain (NDCG)
 
-#### 人工標籤的評估
+#### 評估人工標籤
+
 - 有些 ground truth (参考标准) 不可得
 - 要得到 ground truth 需要人打標籤
 - 每個標籤至少需要兩個人確認
@@ -410,8 +411,30 @@ F1-Score  | `2∙P∙R/(P+R)` | Consider precision and recall at the same time
  
 ##### Cohen’s Kappa Coefficient (k)
 - 評估兩個人做決定一致性
-- P(a) 兩個人有共識
+- P(a) 兩人有共識的機率
+- P(b) 兩人隨機決定達成共識的機率
+- k = (P(a) - P(e)) / (1 - P(e))
+  - k > 0.8 很好
+  - 0.67 ≤ k ≤ 0.8 還好
+  - k < 0.67 不可靠
 
+        | B (Yes) | B (No)
+--------|---------|---------
+A (Yes) | 20      | 5
+A (No)  | 10      | 15
+
+-P(a) = 25 + 15 / 50 = 0.7
+- P(b) = 25/50 ∙ 30/50 + 25/50 ∙ 20/50 = 0.5
+  - 25/50 ∙ 30/50: A 隨機說 Yes 且 B 隨機說 Yes 的機率
+  - 25/50 ∙ 20/50: A 隨機說 No 且 B 隨機說 No 的機率
+- k = (0.7 - 0.5) / (1 - 0.5) = 0.4
+
+#### 評估分群
+- 分群使用 corresponding classes C 作為 ground truth
+- Purity
+  - Compute accuracy by counting the correctly assigned instances
+  - Purity will be unsuitable when the number of clusters is large.
+- Normalized Mutual Information (NMI)
 
 ### 特徵的選擇 (Feature Selection)
 ### 特徵的縮減 (Feature Reduction)
