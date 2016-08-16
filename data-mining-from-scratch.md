@@ -423,7 +423,7 @@ F1-Score  | `2∙P∙R/(P+R)` | Consider precision and recall at the same time
 A (Yes) | 20      | 5
 A (No)  | 10      | 15
 
--P(a) = 25 + 15 / 50 = 0.7
+- P(a) = 25 + 15 / 50 = 0.7
 - P(b) = 25/50 ∙ 30/50 + 25/50 ∙ 20/50 = 0.5
   - 25/50 ∙ 30/50: A 隨機說 Yes 且 B 隨機說 Yes 的機率
   - 25/50 ∙ 20/50: A 隨機說 No 且 B 隨機說 No 的機率
@@ -492,7 +492,6 @@ A (No)  | 10      | 15
   - Principal Component Analysis (PCA)：使用 principal components 將資料轉換到低維度空間
   - 80/20 法則：大部份的變化可以由少數 principal components 解釋
 - 不相關資訊：能減少特徵數量
-
 
 ## 發現資料中的小團體：分群與其應用 (Small Circles in Data: Clustering and its Applications)
 
