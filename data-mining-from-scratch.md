@@ -497,6 +497,19 @@ A (No)  | 10      | 15
 ## 發現資料中的小團體：分群與其應用 (Small Circles in Data: Clustering and its Applications)
 
 ### 介紹分群 (Introduction to Clustering)
+發現資料的群組 (groups) 與結構 (structures)
+
+Given a set of points (features), group the points into clusters such that
+- Points in a cluster are close/similar to each other
+- Points in different clusters are dissimilar
+- 通常，資料可能在高維度空間，相似性定義為量測到的距離。
+
+![](pictures/cluster.png)
+
+分群方法的種類
+- (階級分群) Hierarchical Clustering - 假設分群可以樹狀方式表示
+- (階級分群) Partitional Clustering - 維持一組 cluster，幫點找到屬於最近的 cluster
+
 ### 階級分群 (Hierarchical Clustering)
 ### 切割分群 (Partitional Clustering)
 ### 分群的應用 (Applications of Clustering)
