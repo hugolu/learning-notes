@@ -279,17 +279,140 @@ Type O  | 0 | 0 | 0 | 1
 - exploit: (N) 功績, (V) 利用
 - 落漆: (Adj) 遜掉了, (V) 牆壁油漆脫落
 
-![](NLTK.png)
+![](pictures/NLTK.png)
 
 工具
 - [NLTK](http://www.nltk.org/): Toolkit for English Natural Language Processing
 - [jieba (結巴)](https://github.com/fxsjy/jieba): Toolkit for Chinese segmentation and tagging
 
+#### 字詞頻率
+- Bag-of-Words (BoW): A simplifying representation
+  - 越頻繁的字詞越重要？
+- Zipf's Law
+  - 頻率越高的字可能越普通
+- TF-IDF (Term Frequence x Inverse Document Frequence)
+  - IDF(w) = log (|D| / df(w)), |D|: 所有文章數, df(w): 出現 w 的文章數
+  - 降低經常出現字詞的重要性
+
+#### Stopwords (無意義的字)
+- 高頻但無意義
+  - 英文：a, the, and, to, be, at, ...
+  - 中文：的、了、嘛、吧、但是
+
+#### 連續字詞
+- 有些字詞合起來才有意義
+  - 例如，Micheal, Jordan => Micheal Jordan
+- Character-level n-gram: 得到字的模式
+- Word-level n-gram: 得到片語的模式
+
+#### Word2Vec
+- 計算文字空間中兩個字的距離
+  - 男人之於女人，國王之於王后
+
 #### 影像特徵 (Image features)
+影像由 pixel 所構成，特徵處理方式有
+- Resizing: 轉換成相同大小
+- pixel 位置不重要
+- Scale-invariant Feature Transform (SIFT): 抽取區域關鍵 (local keypoints) 作為特徵，不隨大小(scaling)、旋轉(rotation)、轉換(translation) 而改變
+
+#### Bag of Visual Words
+- 應用 bag-of-word 的概念
+  - TF-IDF 
+  - keypoint clustering
+  - visual-word vectors
+
+#### CNN (Convolution Neural Network
+- 來自多層CNN的特徵
+  - 預先使用其他資料訓練
+  - hidden layer = 特徵？
+
+工具
+- OpenCV
+  - 內建 SIFT
+  - 可連接 CNN 深度學習函式庫
+- 深度學習函式庫
+  - Tensorflow, Theano, Caffe
 
 #### 訊號特徵 (Signal features)
+來源
+- 感應器資料
+- 音樂
+- 股票
+- 動作
+- 影像與影片
+
+問題
+- 多數為可變長度的時間序列資料 (time series data)
+
+處理方式
+- Sliding Window 從感興趣的位置抽取特定長度的資料
+- Fourier Transform 從另一個 domain 觀察資料：將訊號分解成頻率
 
 ### 特徵與性能 (Features and Performance)
+如何決定特徵的好壞？
+
+不好的特徵會導致災難
+- 模式會試著符合訓練資料
+- 但模式可能無法符合其他(測試)資料
+
+好的特徵可以提高效能
+- 選擇較高效能的特徵
+
+#### Evaluation for supervised models
+準備資料
+- 訓練資料 (training data) - 學習模式
+- 評估資料 (evaluation data) - 調整模式
+- 測試資料 (testing data) - 判斷效能
+
+#### 分類的評估方式
+
+> 我覺得投影片的表有問題，以下是我自己的想法
+
+        | Predict=1 (Positive) | Predict=0 (Negative)
+--------|----------------------|----------------------
+Truth=1 | TP                   | FN
+Truth=0 | FP                   | TN
+
+縮寫| 全名            | 說明                      | 預測結果
+----|-----------------|---------------------------|----------
+TP  | True Positive   | 真陽性：預測為真，事實為真| 成功
+FP  | False Positive  | 偽陽性：預測為真，事實為假| 失敗
+TN  | True Negative   | 真陰性：預測為假，事實為假| 成功
+FN  | False Negative  | 偽陰性：預測為假，事實為真| 失敗
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/422px-Precisionrecall.svg.png)
+
+評估方式  | 公式 | 說明
+----------|------|------
+Accuracy  | `(TP + TN) / (TP + TN + FP + FN)` | The ratio of correct predictions 
+Precision | `TP / (TP + FP)` | The ratio of correct predictions among positive prediction
+Recall    | `TP / (TP + FN)` | The ratio of correct predictions among all such-class instances
+F1-Score  | `2∙P∙R/(P+R)` | Consider precision and recall at the same time 
+
+#### 遞迴的評估方式
+- MAE (Mean Absoluate Error): 預測距離真實結果有多接近
+- RMSE (Root-mean-square error): 放大嚴重的錯誤
+
+#### 排序的評估方式
+- Binary Relevance Ranking: 針對兩個類別 (有關連與無關聯)
+  - Mean Average Precision (MAP)
+  - Mean Reciprocal Rank (MRR)
+  - Area under the Curve (AUC)
+  - Precision at k (P@k)
+- Graded Relevance Ranking: 相關可有多個級別 (分數1~5)
+  - Normalized Discounted Cumulated Gain (NDCG)
+
+#### 人工標籤的評估
+- 有些 ground truth (参考标准) 不可得
+- 要得到 ground truth 需要人打標籤
+- 每個標籤至少需要兩個人確認
+- 上標籤的過程需要判斷
+ 
+##### Cohen’s Kappa Coefficient (k)
+- 評估兩個人做決定一致性
+- P(a) 兩個人有共識
+
+
 ### 特徵的選擇 (Feature Selection)
 ### 特徵的縮減 (Feature Reduction)
 
