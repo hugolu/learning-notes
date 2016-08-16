@@ -34,9 +34,9 @@
 
 #### 資料探勘中的模型
 建立模型以解決問題，模型的特性
-- 有效 - 有確定性的新資料
-- 新穎 - 得到原系統無法明顯觀察到的結果
-- 有用 - 能做出行動 (預期股市會漲：可產生行動，他是個禿子：無法產生行動)
+- 有效性 - 有明確的新資訊
+- 新穎性 - 得到原來無法明顯觀察到的結果
+- 有用處 - 能藉此做出行動 (預期股市會漲：可產生行動，他是個禿子：無法產生行動)
 - 可理解 - 人類應該可以解釋模式 (pattern)
 
 #### 資料探勘中的任務
@@ -118,6 +118,8 @@
 - 從環境隱約回饋中學習
 - 例如，AlphaGO 每步驟沒有明確的標籤，只有「輸贏」的隱約回饋
 
+> [机器学习算法之旅](http://blog.jobbole.com/60809/) 增强学习：输入数据可以刺激模型并且使模型做出反应。反馈不仅从监督学习的学习过程中得到，还从环境中的奖励或惩罚中得到。问题例子是机器人控制，算法例子包括Q-learning以及Temporal difference learning。
+
 ### 創新：從資料到任務到知識 (Innovation: from Data to Task to Knowledge)
 
 #### 兩個關鍵基礎
@@ -142,7 +144,7 @@
 #### 資料挖掘如何革新？
 
 #### 資料驅動
-- 從特地資料引入任務：可以對資料做什麼？
+- 從特定資料引入任務：可以對資料做什麼？
   - 對於空氣品質：推測目前品質、預測未來品質、監測站選擇 
   - 對於社會事件：找到潛在客戶、推薦事件、用戶影響排名
 
@@ -191,7 +193,102 @@
 ## 從資料中發現蛛絲馬跡：特徵抽取與選擇 (Clues in Data: Features Extraction and Selection)
 
 ### 資料探勘中的特徵 (Features in Data Mining)
+
+#### 真實世界的資料又髒又亂
+
+#### 產品評估：我喜歡 iPhone 嗎？
+
+“I bought an iPhone a few days ago. It is such a `nice phone`. The touch screen is `really cool`. The voice quality is `clear` too. It is much `better than my old Blackberry`, which was a `terrible phone` and so `difficult to type` with its `tiny keys`. `However`, my mother was `mad` with me as I did not tell her before I bought the phone. She also thought the phone was `too expensive`, ...” — An example from [Feldman, IJCAI ’13]
+
+- 文章中參雜許多正面、負面的詞
+
+#### 類似的照片
+- 拉布拉多 還是 炸雞？ (棕色、團狀)
+- 牧羊犬 還是 拖把？ (白色、長毛)
+
+#### 人類如何區別照片
+- 小狗：有眼睛、鼻子，很可愛
+- 炸雞：可口、一塊塊、有翅膀
+
+觀察到得以做出決定的重要特性 (properties)
+
+#### 特徵 (fatures): 特性的描述
+![](features.png)
+
+#### 一般化的描述
+- 原始資料無法直接比較
+- Features are same-length vectors with meaningful information.
+
 ### 特徵抽取 (Feature Extraction)
+
+#### 如何抽取特徵
+不同資料需要不同特徵
+- 類別特徵 (Categorical features)
+- 統計特徵 (Statistical features)
+- 文本特徵 (Text features)
+- 影像特徵 (Image features)
+- 訊號特徵 (Signal features)
+
+#### 類別特徵 (Categorical features)
+- 有些資訊屬於種類，而非數值
+  - 血型、天氣、出生地
+- 從 n 種類別特徵擴充為 n 個二元數值特徵
+
+血型 | A | B | AB | O
+-----|---|---|----|---
+Type A  | 1 | 0 | 0 | 0
+Type B  | 0 | 1 | 0 | 0
+Type AB | 0 | 0 | 1 | 0
+Type O  | 0 | 0 | 0 | 1
+
+#### 統計特徵 (Statistical features)
+- 將數值編碼成特徵
+  - 國民所得、一週交通
+- 運用統計量測來呈現資料特性
+  - 最大值、最小值、平均值、中位數、模數、標準差
+
+#### 平均 vs 中位數
+- outlier 嚴重影響統計結果
+- 例如，國民所得資料：22k, 22k, 33k, 1000k
+  - 平均值 = 269250 (= `(22k + 22k + 33k + 1000k) / 4`)
+  - 中位數 = 27500 (= `(22000 + 33000) / 2`)
+  - 哪個更有代表性？
+
+#### 統計特徵適合分組資料 (grouped data)
+- 不規律資料：1, 1, 1000000, 1000000
+- 資料分成 n 組：可以包含 n 個統計特徵
+
+傳統分組標準
+- 時間 (年、月、日)
+- 地區 (國家、州)
+- 人口特徵 (年齡、性別)
+
+#### 文本特徵 (Text features)
+文字探勘很困難
+- 高度變化與不確定性
+  - 文本可以用不同語言、長度、標題編寫
+- 字詞分割
+  - 字母語言 (英文、法文): data science -> data + science
+  - 非字母語言 (中文、日文): 全台大停電 -> 全台 + 大 + 停電 or 全 + 台大 + 停電
+- 文法方式
+  - 詞幹提取(stemming): cats -> cat; image, imaging -> imag
+  - 詞形還原(lemmatization): fly, flies, flied -> fly; am, is, are -> be
+
+#### 文法方式: Part-of-Speech (POS)
+不同位置(詞性)呈現不同意義
+- exploit: (N) 功績, (V) 利用
+- 落漆: (Adj) 遜掉了, (V) 牆壁油漆脫落
+
+![](NLTK.png)
+
+工具
+- [NLTK](http://www.nltk.org/): Toolkit for English Natural Language Processing
+- [jieba (結巴)](https://github.com/fxsjy/jieba): Toolkit for Chinese segmentation and tagging
+
+#### 影像特徵 (Image features)
+
+#### 訊號特徵 (Signal features)
+
 ### 特徵與性能 (Features and Performance)
 ### 特徵的選擇 (Feature Selection)
 ### 特徵的縮減 (Feature Reduction)
