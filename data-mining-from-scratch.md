@@ -437,7 +437,62 @@ A (No)  | 10      | 15
 - Normalized Mutual Information (NMI)
 
 ### 特徵的選擇 (Feature Selection)
+- 特徵可能很多
+- 特徵選擇應該系統化 (systematic) 與自動化 (automatic)
+- 特徵分析很重要：了解為什麼模型可行
+
+方法
+- Wrapper Method
+  - 嘗試所有組合找出最佳特徵集
+  - 限制：2<sup>N</sub> 種組合
+- Leave-one-out Analysis
+  - 排除某特徵後，觀察訓練出來的 model 效能如何
+  - 排除特徵後，效能變差 = 重要的特徵
+- Filter Method
+  - 訓練 model 前先選取特徵
+  - 沒把特徵間的關聯性考慮進去
+- Greedy Inclusion Algorithm
+  - 根據測量，貪婪選擇前 k 個特徵 
+
+#### 離散特徵的選擇標準
+評估一個特徵的存在是否重要
+- Docuemnt Frequency (DF)
+  - 移除罕見特徵 （可能是雜訊、對最終決定沒有影響、不可能出現在新資料)
+- X<sup>2</sup> (chi-square) statistics (CHI)
+  - ???
+- Matual Information (MI)
+  - 量測兩個離算變數 X, Y 之間的相關程度
+- Information Gain (IG)
+  - 知道某特徵是否存在，所獲得的資訊 ???
+
+#### 數值特徵的選擇標準
+評估 feature value 與 ground truth 的相依程度
+- 相關性 (正相關、負相關)
+- 一般相關係數
+  - Pearson Correlation (γ) 
+    - 假設兩個變數有線性關係 (越高、越重)
+  - Spearman Rank Correlation (ρ)
+    - 比較兩變數的排名次序
+  - Kendall Rank Correlation (τ)
+    - 比較兩變數的排名一致性
+
+
 ### 特徵的縮減 (Feature Reduction)
+大規模資料有無數的特徵
+- 高解析度影像 - 9600x7200 pixel
+- 社群網路 - 2<sup>26</sup> 個節點
+- 大規模的文本語料庫 - 2<sup>60</sup> 5-gram Bag-of-word terms
+- 越多維度，越久的訓練時間
+
+#### 維度縮減
+- 目標：縮小特徵數量，且保有大部份資訊
+
+那些應該保留
+- 主要資訊：能呈現大部份資訊
+  - Principal Component Analysis (PCA)：使用 principal components 將資料轉換到低維度空間
+  - 80/20 法則：大部份的變化可以由少數 principal components 解釋
+- 不相關資訊：能減少特徵數量
+
 
 ## 發現資料中的小團體：分群與其應用 (Small Circles in Data: Clustering and its Applications)
 
