@@ -30,7 +30,7 @@
 
 ### 資料探勘中的任務與模型 (Tasks and Models in Data Mining)
 
-![](data-task-knowledge.png)
+![](pictures/data-task-knowledge.png)
 
 #### 資料探勘中的模型
 建立模型以解決問題，模型的特性
@@ -96,7 +96,7 @@
 - 資訊編碼為特徵向量 (feature vectors)
 - 特徵與模型的選取很重要
 
-![](machine-learning.png)
+![](pictures/machine-learning.png)
 
 #### 機器學習模型的種類
 - 不同演算法適用於不同資料
@@ -126,7 +126,7 @@
 - 資料：資訊來源
 - 任務：要解決的問題
 
-![](data-task-knowledge.png)
+![](pictures/data-task-knowledge.png)
 
 ***Then the model can solve the task with data and produce knowledge!***
 
@@ -213,7 +213,7 @@
 觀察到得以做出決定的重要特性 (properties)
 
 #### 特徵 (fatures): 特性的描述
-![](features.png)
+![](pictures/features.png)
 
 #### 一般化的描述
 - 原始資料無法直接比較
