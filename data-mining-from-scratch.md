@@ -6,7 +6,45 @@
 ## 從資料到目標，從目標到知識 (Data Mining: From Data to Task to Knowledge)
 
 ### 簡介資料探勘 (Introduction to Data Mining)
+#### 什麼是資料探勘
+- 從資料抽取有用的資訊
+- 將資料轉換為可理解的結構
+- 資料庫知識發掘(knownledge discovery in database, KDD)的分析步驟
+
+#### 真實世界的應用
+- Googole Search Engine
+- Spam Filtering
+- Advertising
+- Recommender Systems
+- Facebook Newsfeed
+
+#### 但真實世界的資料很雜亂
+- 沒有組織化
+- 大部份是伺服器的 logs
+- 問題可能難以直接解決
+
+#### 資料探勘與其他技術的重疊
+- Database - Large-scale Data 
+- Machine Learning - Learning Model
+- CS Theory - Algorithms
+
 ### 資料探勘中的任務與模型 (Tasks and Models in Data Mining)
+
+![](data-task-knowledge.png)
+
+#### 資料探勘中的模型
+建立模型以解決問題，模型的特性
+- 有效 - 有確定性的新資料
+- 新穎 - 得到原系統無法明顯觀察到的結果
+- 有用 - 能做出行動 (預期股市會漲：可產生行動，他是個禿子：無法產生行動)
+- 可理解 - 人類應該可以解釋模式 (pattern)
+
+#### 資料探勘中的任務
+- 解決問題前應該明確的表達問題
+- 兩種任務
+  - 預測型：處理未知的值，例如分類
+  - 描述型：找到模式與描述資料，例如社群分群
+
 ### 資料探勘中的機器學習 (Machine Learning in Data Mining)
 ### 創新：從資料到任務到知識 (Innovation: from Data to Task to Knowledge)
 ### 資料探勘工具 (Tools for Data Mining)
