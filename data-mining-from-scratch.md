@@ -534,37 +534,61 @@ Given a set of points (features), group the points into clusters such that
 ### 切割分群 (Partitional Clustering)
 ![](pictures/partitional-clustering.png)
 
-#### 演算法
-K-means: 將資料分成 k 個 clusters (k 由使用者定義)
+- K-means - simple partitional clustering method
+- BFR algorithm - a variant of k-means for **large-scale and high-dimension data**
+- CURE algorithm - allows clusters to assume any shape
 
-1. 隨機選取 k 點當成初始質心 (initial centroid)
+#### K-means
+將資料分成 K 個 clusters (K 由使用者定義)
+
+1. 隨機選取 K 點當成初始質心 (initial centroid)
 2. 把每個點分配到最鄰近的質心
 3. 使用目前分群的點，更新群的質心
 4. 如果沒有達到結束條件，繼續步驟二
 
-結束條件
+##### 結束條件
 
 - 沒有點分配到不同的群
 - 質心穩定
 
-#### 優點
+##### 優點
 - 容易學習與實作
-- 有效率 O(kn) 
-- 當 k 小，幾乎線性時間
+- 有效率 O(Kn) 
+- 當 K 小，幾乎線性時間
 
-#### 缺點
-- k 需要人去定義
+##### 缺點
+- K 需要人去定義
 - 對於 outliers 敏感
 - 對初始質心敏感
 
 ![](pictures/k-means.png)
 
 
-#### 如何挑選 K
-- 方法一
-  - 
-- 方法二
-  - 
+#### BFR Algorithm
+- BFR [Bradley-Fayyad-Reina] 是 K-means 的變形
+- 用來處理「大規模」與「高維度」的資料
+
+##### 流程
+![](pictures/BFR.png)
+
+- 初始
+  - 從 K-means 開始
+- 將點分成三組
+  - Discard Set (DS): 可被合併到 centroid 的點
+  - Compression Set (CS): 相近的點，但無法合併到 centroid
+  - Retained Set (RS): 被隔離的點，等待合併到 CS
+- 把足夠接近的點加到 DS
+- cluster 變成 CS(?)，outliers 變成 RS
+- 最後一回合，合併 CS 與 RS 到最接近的 cluster
+
+##### 多近算近
+- Mahalanobis Distance
+  - 假設 cluster 在d維度以常態分佈
+  - 用標準差與 Mahalanobis Distance 決定 threshold 
+
+#### CURE algorithm
+- 用來處理任何形狀的 cluster
+
 ### 分群的應用 (Applications of Clustering)
 
 ## 沒有特徵該怎麼辦？從推薦系統談起 (No Features? Starting from Recommender Systems)
