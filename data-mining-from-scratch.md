@@ -614,6 +614,41 @@ Given a set of points (features), group the points into clusters such that
 ## 沒有特徵該怎麼辦？從推薦系統談起 (No Features? Starting from Recommender Systems)
 
 ### 介紹推薦系統 (Introduction to Recommender System)
+動機：預測用戶對商品的偏好
+- 準確識別用戶喜好
+- 訂購商品時，有更好的使用經驗
+- 發現潛在訂單
+
+![](pictures/recommend.png]
+
+#### 種類
+- Editorial Systems - 人工編輯
+- Global Recommendation - 推薦「最熱門」或「最新穎」的產品
+- Personalized Systems - 個人化，如 Amazon, Netflix, Facebook, ...
+
+#### 步驟
+- 蒐集已知 rating
+  - 明確的 (Explicit) - 用戶給分，如電影評分 1~5 顆星
+  - 隱喻的 (Implicit) - 點擊商品連結、放到興趣清單、放到購物車、購買
+- 預測未知 rating
+- 評估模型
+
+#### 評估 Explicit Ratings
+- 越接近 ground truth，效能越好
+- Root Mean Square Error (RMSE)
+
+#### 評估 Implicit Ratings
+- 排名越高、效能越好
+- Normalized Discounted Cumulative Gain (NDCG)
+- 假設 implicit ratings 只有 positive ground truth
+
+#### 未知評分預測，很難
+- Sparseness problem
+  - 大部份用戶只有給少數 item 評分
+- Cold-start problem
+  - 新的 item 沒有評分
+  - 新的 user 沒有評分歷史
+
 ### 根據內容過濾 (Content-based Filtering)
 ### 協同式過慮 (Collaborative Filtering)
 ### 潛在因素模型 (Latent Factor Models)
