@@ -650,6 +650,53 @@ Given a set of points (features), group the points into clusters such that
   - 新的 user 沒有評分歷史
 
 ### 根據內容過濾 (Content-based Filtering)
+- 主要概念：根據用戶與商品特性建立推薦系統
+- 主要問題：用戶不願提供資訊
+  - Pseudo User Profile: 根據用戶過去的動作，建立側寫
+
+![](pictures/content-based-filtering.png)
+
+#### 優點
+- 客製化推薦
+- 商品方面沒有 cold-start 問題
+- 容易解釋為何推薦
+
+#### 缺點
+- 不容易定義適當的特徵
+- 新用戶沒有側寫 (cold-start)
+- 側寫之外，用戶可能有其他多重興趣
+- 隱私權問題
+
 ### 協同式過慮 (Collaborative Filtering)
-### 潛在因素模型 (Latent Factor Models)
-### 潛在因素模型的變化 (Variations of Latent Factor Models)
+- 同時考量多個用戶與商品
+
+![](pictures/collelorative-filtering.png)
+
+#### 假設
+- 類似商品有類似評價
+- 類似用戶有類似偏好
+
+#### 不需抽取特徵
+- 依賴用戶過去的行為
+- 使用用戶關係與商品關係預測
+
+#### 優點
+- 容易理解與實作
+- 不需要選取特徵
+
+#### 缺點
+- 需要長時間計算
+- 流行傾向
+- cold-start problem
+- 如果矩陣太多空白，不容易找到評價相同商品的用戶
+
+### LF 模型 (Latent Factor Models)
+- CF 的變形
+- CF 矩陣太多空白，透用 ALS (Alternating Least Square) 解決運算上的問題
+- 使用 SGD (Stochastic Gradient Descent) 快速找到最佳解
+
+> 理論太硬了，有機會再回頭複習
+
+### LF 模型的變化 (Variations of Latent Factor Models)
+- MF with Context: Tensor Factorization
+- Bayesian Personalized Ranking (BPR)
