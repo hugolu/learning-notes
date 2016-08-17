@@ -590,6 +590,26 @@ Given a set of points (features), group the points into clusters such that
 - 用來處理任何形狀的 cluster
 
 ### 分群的應用 (Applications of Clustering)
+分群中的物件有相似的特性
+- 資料的內容
+- 社會網路的通訊
+- 相關的文章
+- 有意義的圖片
+- 標誌地理位置的點
+- 音樂類型
+
+分群隱喻
+- 特性發現 - A cluster might represent some specific properties
+- 特性推論 - We can inference properties of unknown data from same-cluster data
+
+#### 應用
+- POI Identification: 透過 geo-located photos 找出 point-of-interests
+- Community Detection: 找出社會網路節點構成的社群
+- Document Type Discovery: 同一cluster內的文章屬於相同的類型
+- Clustering in Information Retrieval: 關聯相近的文章傾向回應同一個查詢
+- Search Results Clustering - 將查詢結果分成幾個群組
+
+> Vivisimo是一個很有特色的元搜索引擎，它採用了一種專門開發的啟髮式演算法來集合或聚類原文文獻。這種演算法汲取了傳統人工智慧思想，強調對檢索結果擁有更好描述和聚類。它的文獻聚類技術將文本信息自動分類，分成了有意義的等級式排列的目錄，它是完全自動化的，不需要人為進一步干擾，也不需要維護。
 
 ## 沒有特徵該怎麼辦？從推薦系統談起 (No Features? Starting from Recommender Systems)
 
