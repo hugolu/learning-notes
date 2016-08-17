@@ -510,7 +510,61 @@ Given a set of points (features), group the points into clusters such that
 - (階級分群) Partitional Clustering - 維持一組 cluster，幫點找到屬於最近的 cluster
 
 ### 階級分群 (Hierarchical Clustering)
+![](pictures/hierarchical-clustering.png)
+
+#### 演算法
+- Agglomerative (bottom-up)
+  - 一開始所有的點都是 cluster
+  - 重複合併兩個最接近的點
+- Divisive (top-down)
+  - 一開始把所有的點當成一個 cluster
+  - 然後重複分割
+
+#### 兩個群的距離
+- Single-link - 最近兩個點的距離
+- Averge-link - 兩組點的平均距離
+- Complete-link - 最遠兩個點的距離
+- Centroid - 兩組點的中心距離
+
+#### 實作時間複雜度
+- Divisive: O(2<sup>n</sup>)
+- Agglomerative: O(n<sup>3</sup>)
+- 適用小型資料，不適合大規模資料
+
 ### 切割分群 (Partitional Clustering)
+![](pictures/partitional-clustering.png)
+
+#### 演算法
+K-means: 將資料分成 k 個 clusters (k 由使用者定義)
+
+1. 隨機選取 k 點當成初始質心 (initial centroid)
+2. 把每個點分配到最鄰近的質心
+3. 使用目前分群的點，更新群的質心
+4. 如果沒有達到結束條件，繼續步驟二
+
+結束條件
+
+- 沒有點分配到不同的群
+- 質心穩定
+
+#### 優點
+- 容易學習與實作
+- 有效率 O(kn) 
+- 當 k 小，幾乎線性時間
+
+#### 缺點
+- k 需要人去定義
+- 對於 outliers 敏感
+- 對初始質心敏感
+
+![](pictures/k-means.png)
+
+
+#### 如何挑選 K
+- 方法一
+  - 
+- 方法二
+  - 
 ### 分群的應用 (Applications of Clustering)
 
 ## 沒有特徵該怎麼辦？從推薦系統談起 (No Features? Starting from Recommender Systems)
