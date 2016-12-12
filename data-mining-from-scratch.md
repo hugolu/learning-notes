@@ -47,8 +47,8 @@
   - 處理未知的值，例如分類
   - 分類(Classification)、迴歸(Regression)、排名(Ranking)...
 - 描述型
-  - 找到模式與描述資料，例如社群分群
-  - 分群(Clustering)、摘要(Summarization)、關聯規則學習(Association Rule Learning)
+  - 找到模式與描述資料，例如社群聚類
+  - 聚類(Clustering)、摘要(Summarization)、關聯規則學習(Association Rule Learning)
 
 #### 分類(Classification)
 - 概括**已知**的結構，應用在**未知**的資料
@@ -65,9 +65,9 @@
 - 位置越高的項目越重要
 - 例如，搜尋引擎的結果 (越上面的連結越有相關性)
 
-#### 分群(Clustering)
+#### 聚類(Clustering)
 - 發現資料的群聚(groups)與結構(structures)
-- 在不知道資料結構的情況下，學習分群
+- 在不知道資料結構的情況下，學習聚類
 - 例如，根據標誌位置的照片，找出興趣點
 
 > Wiki: 興趣點（point of interest, POI）乃是電子地圖上的某個地標、景點，用以標示出該地所代表的政府部門、各行各業之商業機構（加油站、百貨公司、超市、餐廳、酒店、便利商店、醫院等）、旅遊景點（公園、公共廁所等）、古蹟名勝、交通設施（各式車站、停車場、超速照相機、速限標示）等處所。
@@ -106,7 +106,7 @@
 - 監督式學習 (Supervised Learning)
   - with labeled data: 使用有標籤的資料學習，例如分類
 - 非監督式學習 (Unsupervised Learning)
-  - without labeled data: 使用無標籤的資料學習，例如分群
+  - without labeled data: 使用無標籤的資料學習，例如聚類
 
 #### 半監督式學習 (Semi-supervised Learning)
 - 使用有標籤與無標簽的資料學習
@@ -168,13 +168,13 @@
 
 #### Weka
 - http://www.cs.waikato.ac.nz/ml/weka/
-- 功能：分類、回歸、分群、關聯規則
+- 功能：分類、回歸、聚類、關聯規則
 - 優點：眾多模型、友善介面、容易視覺化
 - 缺點：慢、參數調整、令人混亂的格式
 
 #### scikit-learn
 - http://scikit-learn.org/
-- 功能：分類、迴歸、分群、降維
+- 功能：分類、迴歸、聚類、降維
 - 優點：快速、彈性、眾多模式、參數調整
 - 缺點：參數調整、自行處理資料、沒有圖形化介面、需要寫程式
 
@@ -429,8 +429,8 @@ A (No)  | 10      | 15
   - 25/50 ∙ 20/50: A 隨機說 No 且 B 隨機說 No 的機率
 - k = (0.7 - 0.5) / (1 - 0.5) = 0.4
 
-#### 評估分群
-- 分群使用 corresponding classes C 作為 ground truth
+#### 評估聚類
+- 聚類使用 corresponding classes C 作為 ground truth
 - Purity
   - Compute accuracy by counting the correctly assigned instances
   - Purity will be unsuitable when the number of clusters is large.
@@ -493,9 +493,9 @@ A (No)  | 10      | 15
   - 80/20 法則：大部份的變化可以由少數 principal components 解釋
 - 不相關資訊：能減少特徵數量
 
-## 發現資料中的小團體：分群與其應用 (Small Circles in Data: Clustering and its Applications)
+## 發現資料中的小團體：聚類與其應用 (Small Circles in Data: Clustering and its Applications)
 
-### 介紹分群 (Introduction to Clustering)
+### 介紹聚類 (Introduction to Clustering)
 發現資料的群組 (groups) 與結構 (structures)
 
 Given a set of points (features), group the points into clusters such that
@@ -505,11 +505,11 @@ Given a set of points (features), group the points into clusters such that
 
 ![](pictures/cluster.png)
 
-分群方法的種類
-- (階級分群) Hierarchical Clustering - 假設分群可以樹狀方式表示
-- (階級分群) Partitional Clustering - 維持一組 cluster，幫點找到屬於最近的 cluster
+聚類方法的種類
+- (階級聚類) Hierarchical Clustering - 假設聚類可以樹狀方式表示
+- (階級聚類) Partitional Clustering - 維持一組 cluster，幫點找到屬於最近的 cluster
 
-### 階級分群 (Hierarchical Clustering)
+### 階級聚類 (Hierarchical Clustering)
 ![](pictures/hierarchical-clustering.png)
 
 #### 演算法
@@ -531,7 +531,7 @@ Given a set of points (features), group the points into clusters such that
 - Agglomerative: O(n<sup>3</sup>)
 - 適用小型資料，不適合大規模資料
 
-### 切割分群 (Partitional Clustering)
+### 切割聚類 (Partitional Clustering)
 ![](pictures/partitional-clustering.png)
 
 - K-means - simple partitional clustering method
@@ -543,7 +543,7 @@ Given a set of points (features), group the points into clusters such that
 
 1. 隨機選取 K 點當成初始質心 (initial centroid)
 2. 把每個點分配到最鄰近的質心
-3. 使用目前分群的點，更新群的質心
+3. 使用目前聚類的點，更新群的質心
 4. 如果沒有達到結束條件，繼續步驟二
 
 ##### 結束條件
@@ -589,8 +589,8 @@ Given a set of points (features), group the points into clusters such that
 #### CURE algorithm
 - 用來處理任何形狀的 cluster
 
-### 分群的應用 (Applications of Clustering)
-分群中的物件有相似的特性
+### 聚類的應用 (Applications of Clustering)
+聚類中的物件有相似的特性
 - 資料的內容
 - 社會網路的通訊
 - 相關的文章
@@ -598,7 +598,7 @@ Given a set of points (features), group the points into clusters such that
 - 標誌地理位置的點
 - 音樂類型
 
-分群隱喻
+聚類隱喻
 - 特性發現 - A cluster might represent some specific properties
 - 特性推論 - We can inference properties of unknown data from same-cluster data
 
