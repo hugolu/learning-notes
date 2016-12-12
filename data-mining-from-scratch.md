@@ -619,7 +619,7 @@ Given a set of points (features), group the points into clusters such that
 - 訂購商品時，有更好的使用經驗
 - 發現潛在訂單
 
-![](pictures/recommend.png]
+![](pictures/recommend.png)
 
 #### 種類
 - Editorial Systems - 人工編輯
