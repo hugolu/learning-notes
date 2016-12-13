@@ -321,7 +321,7 @@ Type O  | 0 | 0 | 0 | 1
   - keypoint clustering
   - visual-word vectors
 
-#### CNN (Convolution Neural Network
+#### CNN (Convolution Neural Network)
 - 來自多層CNN的特徵
   - 預先使用其他資料訓練
   - hidden layer = 特徵？
